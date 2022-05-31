@@ -1,11 +1,10 @@
-module vbeltramini.com/go-web-basics/web_class_2/exercise_2
+module vbeltramini.com/go-web-basics/web_class_II_part_1/exercise_3
 
 go 1.18
 
-require github.com/gin-gonic/gin v1.8.0
-
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/gin-gonic/gin v1.8.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
