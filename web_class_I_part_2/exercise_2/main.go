@@ -64,7 +64,7 @@ func getById(usuarios []user) gin.HandlerFunc {
 			"message": "id not found",
 		})
 	}
-	return gin.HandlerFunc(fn)
+	return fn
 }
 
 func getAll(usuarios []user) gin.HandlerFunc {
@@ -73,7 +73,7 @@ func getAll(usuarios []user) gin.HandlerFunc {
 			c.JSON(200, user)
 		}
 	}
-	return gin.HandlerFunc(fn)
+	return fn
 }
 
 func createUsersData() []user {

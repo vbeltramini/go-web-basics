@@ -36,34 +36,34 @@ func main() {
 	group := router.Group("users")
 	{
 		group.GET("/", getAllUsers(u))
-		group.GET("/filter", getUserById(u))
+		group.GET("/filter", getUserById())
 	}
 	router.Run()
 }
 
-func getUserById(usuarios []user) gin.HandlerFunc {
-	fn := func(c *gin.Context) {
-		id := c.Query("id")
+func getUserById() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		users := createUsersData()
+		id := context.Query("id")
 		id2, err := strconv.Atoi(id)
 		if err != nil && id != "" {
-			c.JSON(http.StatusInternalServerError, gin.H{
+			context.JSON(http.StatusInternalServerError, gin.H{
 				"message": "id is not a number",
 			})
 			log.Println(err)
 			return
 		}
-		for _, u := range usuarios {
+		for _, u := range users {
 			fmt.Println(u.Id)
 			if u.Id == id2 {
-				c.JSON(200, u)
+				context.JSON(200, u)
 				return
 			}
 		}
-		c.JSON(http.StatusNotFound, gin.H{
+		context.JSON(http.StatusNotFound, gin.H{
 			"message": "user not found",
 		})
 	}
-	return fn
 }
 
 func getAllUsers(usuarios []user) gin.HandlerFunc {
