@@ -8,13 +8,15 @@ import (
 )
 
 func main() {
-	repo := products.NewRepository()
-	service := products.NewService(repo)
-	p := handler.NewProduct(service)
+	productRepository := products.NewRepository()
+	service := products.NewService(productRepository)
+	productHandler := handler.NewProduct(service)
 
-	r := gin.Default()
-	pr := r.Group("/products")
-	pr.POST("/", p.Store())
-	pr.GET("/", p.GetAll())
-	r.Run()
+	router := gin.Default()
+	productRouterGroup := router.Group("/products")
+	{
+		productRouterGroup.POST("/", productHandler.Store())
+		productRouterGroup.GET("/", productHandler.GetAll())
+	}
+	router.Run()
 }

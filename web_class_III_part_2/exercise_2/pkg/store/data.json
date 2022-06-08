@@ -1,0 +1,16 @@
+[
+  {
+    "id": 9,
+    "name": "teste",
+    "type": "teste",
+    "count": 10,
+    "price": 100
+  },
+  {
+    "id": 10,
+    "name": "teste",
+    "type": "teste",
+    "count": 10,
+    "price": 100
+  }
+]
