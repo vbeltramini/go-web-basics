@@ -1,0 +1,196 @@
+definitions:
+  handler.productRequest:
+    properties:
+      count:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      type:
+        type: string
+    type: object
+  web.Response:
+    properties:
+      code:
+        type: string
+      data: {}
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /products:
+    post:
+      consumes:
+      - application/json
+      description: store products
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Product to store
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.productRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Store products
+      tags:
+      - Products
+  /products/{:id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete products by ID
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Some ID
+        in: path
+        name: some_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: We need ID
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: Can not find ID
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Delete products by ID
+      tags:
+      - Products
+    get:
+      consumes:
+      - application/json
+      description: get product by id
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Some ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: We need ID
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: Can not find ID
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Get products by ID
+      tags:
+      - Products
+    patch:
+      consumes:
+      - application/json
+      description: update the name of the products by ID
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Some ID
+        in: path
+        name: some_id
+        required: true
+        type: integer
+      - description: Product to update name
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.productRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: We need ID
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: Can not find ID
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update name products by ID
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: update products
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: Some ID
+        in: path
+        name: '{:id}'
+        required: true
+        type: integer
+      - description: Product to update
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/handler.productRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.Response'
+        "400":
+          description: We need ID
+          schema:
+            $ref: '#/definitions/web.Response'
+        "404":
+          description: Can not find ID
+          schema:
+            $ref: '#/definitions/web.Response'
+      summary: Update products by ID
+      tags:
+      - Products
+swagger: "2.0"
